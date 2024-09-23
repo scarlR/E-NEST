@@ -1,7 +1,7 @@
 import mongoose, { Document } from "mongoose";
 import { courseType } from "../types/course.model";
 
-const schema = new mongoose.Schema<courseType>(
+const courseSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -22,14 +22,28 @@ const schema = new mongoose.Schema<courseType>(
     },
     rating: {
       type: Number,
-      default: 0,
+      default: 4.3,
     },
     description: {
       type: String,
       required: true,
     },
+    categories: [
+      {
+        name: {
+          type: String,
+          required: true,
+        },
+        subcategories: [
+          {
+            type: String,
+            required: true,
+          },
+        ],
+      },
+    ],
   },
   { timestamps: true }
 );
 
-export const Course = mongoose.model<courseType>("Course", schema);
+export const Course = mongoose.model<courseType>("Course", courseSchema);
