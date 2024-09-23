@@ -70,3 +70,19 @@ export const profile =async (req: Request, res: Response) => {
     const user = req.body.user;
     res.status(200).json({ user });
 }
+
+
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    console.log("ko");
+    const users = await User.find({ role: "user" });
+    return res.status(200).json({ users });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({
+        message: "Spmething went wrong while getting all users",
+        error,
+      });
+  }
+};

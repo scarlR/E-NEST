@@ -6,5 +6,7 @@ export interface userType extends Document {
   email: string;
   password: string;
   image: string;
-  
+  role?: "user" | "creator";
+  designation?: string; 
+  totalCoursesCreated?: number;
 }

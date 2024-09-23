@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./src/db/db";
 import userRouter from "./src/routes/user";
 import courseRouter from "./src/routes/course";
+import creatorRouter from "./src/routes/creator";
 import testimonialRouter from "./src/routes/testimonial";
 
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(express.json());
 
 //apis
 app.use("/api/user", userRouter);
+app.use("/api/creator", creatorRouter);
 app.use("/api/course", courseRouter);
 app.use("/api/testimonial", testimonialRouter);
 
