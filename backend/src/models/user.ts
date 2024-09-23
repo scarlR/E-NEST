@@ -26,9 +26,7 @@ const schema = new mongoose.Schema<userType>(
     },
     designation: {
       type: String,
-      required: function () {
-        return this.role === "creator"; 
-      },
+    required: true,
     },
     totalCoursesCreated: {
       type: Number,

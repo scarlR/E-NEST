@@ -7,6 +7,6 @@ export interface userType extends Document {
   password: string;
   image: string;
   role?: "user" | "creator";
-  designation?: string; 
+  designation: string; 
   totalCoursesCreated?: number;
 }
