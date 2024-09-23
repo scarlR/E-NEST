@@ -12,5 +12,5 @@ export interface courseType extends Document {
   instructor: userType;
   rating: number;
   description: string;
-  categories: category[]; 
+  categories: category; 
 }
