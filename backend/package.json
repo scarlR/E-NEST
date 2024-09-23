@@ -1,0 +1,17 @@
+{
+  "name": "e-nest",
+  "version": "1.0.0",
+  "description": "e-nest platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "raunakscarlet@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
