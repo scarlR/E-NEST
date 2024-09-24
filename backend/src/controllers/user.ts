@@ -6,7 +6,7 @@ import { sign } from "jsonwebtoken";
 
 
 export const register = async (req: Request, res: Response) => {
-    const { name, email, password } = req.body;
+    const { name, email, password ,designation} = req.body;
     if (!name || !email || !password) {
      
         return res.status(400).json({ error: "All fields are required" });
@@ -17,12 +17,12 @@ export const register = async (req: Request, res: Response) => {
                return res.status(400).json({ error: "User already exists" });
              }
             const hashedPassword = await bcrypt.hash(password, 10);
-            const newUser : userType = await User.create({
-                    email,
-                    name,
-                    password: hashedPassword
-                }
-            );
+            const newUser: userType = await User.create({
+              email,
+              name,
+              password: hashedPassword,
+              designation,
+            });
 
             const token = sign({ id: newUser._id }, process.env.JWT_SECRET as string, {
                 expiresIn: "10d",

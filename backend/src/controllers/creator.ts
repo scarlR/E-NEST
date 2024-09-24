@@ -5,13 +5,12 @@ import { cloudinary } from "../utils/cloudinary";
 import { courseType } from "../types/course.model";
 
 export const beCreator = async (req: Request, res: Response) => {
-  const { designation } = req.body;
+  
 
   try {
     const user = req.body.user;
 
     user.role = "creator";
-    user.designation = designation;
     user.totalCoursesCreated = 0;
     await user.save();
 
@@ -49,6 +48,7 @@ export const createCourse = async (req: Request, res: Response) => {
     if (instructor.role !== "creator") {
       return res.status(403).json({ message: "u need to be instructor" });
     }
+    console.log(instructor)
 console.log("first")
     const course: courseType = await Course.create({
       title,
