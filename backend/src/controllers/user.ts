@@ -3,6 +3,7 @@ import { User } from "../models/user";
 import { userType } from "../types/user.model";
 import bcrypt from "bcrypt";
 import { sign } from "jsonwebtoken";
+import { cloudinary } from "../utils/cloudinary";
 
 
 export const register = async (req: Request, res: Response) => {
@@ -11,6 +12,10 @@ export const register = async (req: Request, res: Response) => {
      
         return res.status(400).json({ error: "All fields are required" });
     }
+    let image = req.file?.path;
+    const imageUpload = await cloudinary.uploader.upload(image as string);
+    const imageUrl = imageUpload.url;
+
         try {
             const user = await User.findOne({ email });
              if (user) {
@@ -19,7 +24,8 @@ export const register = async (req: Request, res: Response) => {
             const hashedPassword = await bcrypt.hash(password, 10);
             const newUser: userType = await User.create({
               email,
-              name,
+                name,
+              image: imageUrl,
               password: hashedPassword,
               designation,
             });
