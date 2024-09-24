@@ -7,7 +7,8 @@ import { cloudinary } from "../utils/cloudinary";
 
 
 export const register = async (req: Request, res: Response) => {
-    const { name, email, password ,designation} = req.body;
+    const { name, email, password, designation } = req.body;
+    console.log(req.body)
     if (!name || !email || !password) {
      
         return res.status(400).json({ error: "All fields are required" });
@@ -15,6 +16,7 @@ export const register = async (req: Request, res: Response) => {
     let image = req.file?.path;
     const imageUpload = await cloudinary.uploader.upload(image as string);
     const imageUrl = imageUpload.url;
+    console.log(imageUrl)
 
         try {
             const user = await User.findOne({ email });
